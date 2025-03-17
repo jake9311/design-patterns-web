@@ -1,9 +1,0 @@
-{
-  "routes": {
-    "/design-patterns-web": {},
-    "/design-patterns-web/home": {},
-    "/design-patterns-web/patterns": {},
-    "/design-patterns-web/patterns/factory": {},
-    "/design-patterns-web/patterns/strategy": {}
-  }
-}
