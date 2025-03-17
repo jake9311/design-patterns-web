@@ -1,0 +1,61 @@
+<h1>Factory Pattern </h1>
+    
+<p><strong>Factory Pattern:</strong><br>
+תבנית "מפעל" היא תבנית עיצוב המשתייכת לקטגוריית -תבניות יצירה- . 
+<br>במקום ליצור אובייקטים באופן ישיר בכל מקום בקוד, משתמשים במחלקה או בפונקציה מיוחדת-"מפעל"- שתפקידה לנהל את תהליך היצירה ולספק את האובייקט הרצוי בהתאם לצורך.    </p>
+
+
+
+<h2>🧐 ?  Factory Pattern מתי נשתמש ב־</h2>
+
+<p> במערכות רבות יש צורך ליצור אובייקטים מסוגים שונים, בהתאם לנתונים או תנאים משתנים. לדוגמה: מערכת לניהול כלי רכב יכולה לייצר סוגים שונים של רכבים בהתאם לדרישת המשתמש: </p>
+ <ul>
+     <li>🚗 רכב פרטי (Car) - עם מספר דלתות וגודל מנוע.</li>
+      <li>🚚 משאית (Truck) - עם משקל נשיאה ומספר צירים.</li> 
+      <li>🏍️ אופנוע (Bike) - עם סוג מנוע והתאמה לנסיעה בשטח.</li>
+     </ul> 
+     <p> במקום ליצור כל רכב בנפרד בקוד ולכתוב תנאים עבור כל סוג, Factory Pattern מאפשר לנו להשתמש במחלקה אחת ("מפעל") שמקבלת את סוג הרכב הרצוי ופרטים נוספים – ומחזירה את האובייקט המתאים. </p>
+
+     <h3>Factory Pattern דוגמה לשימוש ב־   </h3>
+     <p>  בדוגמה שלנו, המשתמש בוחר את סוג כלי הרכב שברצונו ליצור, מזין את הפרטים הרלוונטיים, והמערכת יוצרת את הרכב המתאים באמצעות תבנית "מפעל". <br>
+        כל רכב שנוצר מממש ממשק אחיד, אך מכיל מאפיינים והתנהגות ייחודיים לו. </p>
+
+<label><strong>Select Vehicle Type:</strong></label>
+<select [(ngModel)]="vehicleType">
+  <option value="car">Car</option>
+  <option value="truck">Truck</option>
+  <option value="bike">Bike</option>
+</select>
+
+
+<div *ngIf="vehicleType === 'car'">
+  <label>Doors:</label>
+  <input type="number" [(ngModel)]="options.doors" />
+  <label>Engine Size (L):</label>
+  <input type="number" [(ngModel)]="options.engineSize" step="0.1" />
+</div>
+
+<div *ngIf="vehicleType === 'truck'">
+  <label>Weight Capacity (kg):</label>
+  <input type="number" [(ngModel)]="options.weightCapacity" />
+  <label>Axles:</label>
+  <input type="number" [(ngModel)]="options.axles" />
+</div>
+
+<div *ngIf="vehicleType === 'bike'">
+  <label>Engine Type:</label>
+  <input type="text" [(ngModel)]="options.engineType" />
+  <label>Off-road:</label>
+  <input type="checkbox" [(ngModel)]="options.offRoad" />
+</div>
+
+<br />
+<button (click)="createVehicle()">Create Vehicle</button>
+
+
+<div *ngIf="vehicle" class="vehicle-details">
+  <p><strong>Specs:</strong> {{ vehicle.getSpecs() }}</p>
+  <p><strong>Action:</strong> {{ vehicle.drive() }}</p>
+</div>
+
+<a routerLink="/patterns" class="patterns-link">⬅ Back to Patterns</a>

@@ -1,0 +1,63 @@
+<h1>Strategy Pattern</h1>
+<p>
+  <strong>Strategy Pattern:</strong>
+<br>
+  הוא תבנית עיצוב השייכת לקטגוריה -תבניות התנהגותיות- היא מאפשרת להגדיר משפחה של אלגוריתמים שונים ולהחליף ביניהם בזמן ריצה ללא שינוי בקוד הקיים.
+</p>
+
+
+
+<h2>🧐 מתי נשתמש ב-Strategy Pattern?</h2>
+
+<p>
+  דמיין שיש לך מערכת שבה ניתן לבצע פעולה מסוימת בכמה דרכים שונות.  
+  לדוגמה: בחנות מקוונת, חישוב המחיר הסופי של מוצר עשוי להשתנות בהתאם לסוג ההנחה:  
+</p>
+
+<ul>
+  <li>הנחה באחוזים (למשל 10% הנחה).</li>
+  <li> הנחה בסכום קבוע (למשל הנחה של 50 ש"ח).</li>
+  <li> קופון הנחה ספציפי (למשל הנחה של 30 ש"ח עם קוד הנחה).</li>
+</ul>
+
+
+<P>
+  במקום לכתוב קוד שמכיל תנאים רבים, אנו מפרידים כל סוג של הנחה לאסטרטגיה משלה. כך כאשר נוסיף סוגי הנחות חדשים, לא מצטרך לגעת בקוד הקיים אלא רק להוסיף מחלקה חדשה.
+</P>
+
+
+
+<h3> Strategy Pattern דוגמה לשימוש ב-</h3>
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+  <label for="originalPrice"> <strong>Original Price:</strong></label>
+  <input type='number' [(ngModel)]="originalPrice" id="originalPriceInput" >
+  <br>
+  <label for="discountTypeSelect"> <strong>Choose Discount Type:</strong></label>
+  <select id="discountTypeSelect" [(ngModel)]="selectedDiscount">
+    <option value="precentage">Precentage (10%)</option>
+    <option value="fixed">Fixed (50 ש"ח)</option>
+    <option value="coupon">Coupon (DISCOUNT30)</option>
+  </select>
+  <br>
+
+<div *ngIf="selectedDiscount === 'coupon'">
+  <label for="couponCodeInput"> <strong>Coupon Code:</strong></label>
+  <input [(ngModel)]="couponCode" id="couponCodeInput" placeholder="Enter Coupon Code" />
+<br>
+</div>
+<button (click)="calculateFinalPrice()">Calculate Final Price</button>
+
+<p *ngIf="finalPrice !== null" class="final-price">Final Price: {{ finalPrice }} </p>
+</div>
+
+<a routerLink="/patterns" class="patterns-link">⬅ Back to Patterns</a>
